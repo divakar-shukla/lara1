@@ -26,3 +26,5 @@ Route::view('insertform', 'insert_form')->name('AddData');
 Route::view('update', 'insert_form')->name('AddData');
 Route::get("join", [UserController::class, "joinMethod"]);
 Route::get("count", [UserController::class, "countMethod"]);
+Route::view("add_user", "form_validate");
+Route::post("validate",[UserController::class, "validate"])->name("validate");

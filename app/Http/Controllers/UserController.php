@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function validate(Request $req){
+return $req->all();
+    }
     //
     public function showAll(){
         $user = DB::table("users")->get();
