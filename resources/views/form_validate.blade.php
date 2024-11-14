@@ -31,11 +31,12 @@
     </head>
     <body class="antialiased m-4">
         <form action="{{route("validate")}}" method="post">
+            @csrf
             <input type="text" name="name" class="form-control mb-2" placeholder="Name">
             <input type="text" name="email" class="form-control mb-2" placeholder="Email">
             <input type="password" name="password" class="form-control mb-2" placeholder="Password">
+            <input type="text" name="token" class="form-control mb-2" placeholder="Token">
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-
         </form>
     </body>
 </html>

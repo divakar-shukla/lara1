@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function validate(Request $req){
-return $req->all();
-    }
-    //
+
     public function showAll(){
         $user = DB::table("users")->get();
         return view('welcome', ["user" =>$user]);
@@ -42,7 +39,9 @@ return $req->all();
         // return $user;
 
     }
-
+    public function validat(Request $req){
+        return $req->all();
+            }
     public function insertData(){
         $id = DB::table("users")->insert([
         [
