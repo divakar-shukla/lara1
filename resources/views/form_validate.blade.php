@@ -30,12 +30,35 @@
         </style>
     </head>
     <body class="antialiased m-4">
+       
+          {{-- @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+          @endforeach
+
+          @php
+              print_r($errors->all())
+          @endphp --}}
+     
         <form action="{{route("validate")}}" method="post">
             @csrf
-            <input type="text" name="name" class="form-control mb-2" placeholder="Name">
-            <input type="text" name="email" class="form-control mb-2" placeholder="Email">
-            <input type="password" name="password" class="form-control mb-2" placeholder="Password">
-            <input type="text" name="token" class="form-control mb-2" placeholder="Token">
+            <input type="text" name="name" value="{{old("name")}}" class="form-control mb-2  @error("name") is-invalid @enderror" placeholder="Name" >
+            @error("name")
+                {{$message}}
+            @enderror
+            <input type="text" name="email"  value="{{old("email")}}" class="form-control mb-2  @error("email") is-invalid @enderror" placeholder="Email">
+            @error("email")
+            {{$message}}
+            @enderror
+            <input type="password" name="password"  value="{{old("password")}}" class="form-control mb-2  @error("password") is-invalid @enderror" placeholder="Password">
+            @error("password")
+            {{$message}}
+            @enderror
+            <input type="text" name="token"  value="{{old("token")}}" class="form-control mb-2  @error("token") is-invalid @enderror" placeholder="Token">
+           
+           <div> @error("token")
+            {{$message}}
+            @enderror
+           </div>
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
         </form>
     </body>

@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call([
-            // UserSeeder::class
+        $this->call([
+            UserSeeder::class
             // we can use multiple seeder all together like below
             // UserSeeder::class,
             // StudentSeeder::class,
             // AdminSeeder::class`
-        // ]);
+        ]);
         // user::factory()->count(20)->create();
-        student::factory()->count(20)->create();
+        // student::factory()->count(20)->create();
     }
 }

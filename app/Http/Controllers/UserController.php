@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -39,8 +40,19 @@ class UserController extends Controller
         // return $user;
 
     }
-    public function validat(Request $req){
-        return $req->all();
+    public function validat(UserRequest $req){
+    //     return $req->validate([
+    //         'name'=>'required',
+    //         'email'=>'required|email', 
+    //         'password'=>'required|numeric|min:20',
+    //         'token'=>'required',
+    //     ],[
+    //         'email.required'=>'Email Address is most important.',
+    //         'token.required'=>'Please fill Token'
+    //     ]
+    // );
+
+    return  $req->all();
             }
     public function insertData(){
         $id = DB::table("users")->insert([
