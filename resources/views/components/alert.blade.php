@@ -1,0 +1,1 @@
+<button class="alert alert-{{$type}}"> {{$message}}</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\UpperCase;
 
 class UserRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class UserRequest extends FormRequest
         //all these are same validation like you validate in controller but 
         //for custom error message you will have to create a function named messages
         return [
-            'name'=>'required',
+            'name'=>['required', new UpperCase()],
             'email'=>'required|email', 
             'password'=>'required|numeric|min:20',
             'token'=>'required',

@@ -1,6 +1,6 @@
 @extends("template")
-
-@section("footer")
+{{-- @extends("components.alert") --}}
+@section("footer") 
 <p>This is footer.</p>
 @endsection
 @section("content")
@@ -34,7 +34,7 @@
 </table>
 {{-- {{$user->links()}} --}}
 <button class="mt-4"><a href="{{route('AddData')}}">Add User</a></button>
-
+<x-alert type="success" message="operation successful"/>
 
 @endsection
 

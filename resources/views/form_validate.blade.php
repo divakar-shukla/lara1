@@ -45,7 +45,7 @@
             @error("name")
                 {{$message}}
             @enderror
-            <input type="text" name="email"  value="{{old("email")}}" class="form-control mb-2  @error("email") is-invalid @enderror" placeholder="Email">
+            <input type="text" name="email"  value="{{old("email")}}" class="form-control mb-2 @error("email") is-invalid @enderror" placeholder="Email">
             @error("email")
             {{$message}}
             @enderror

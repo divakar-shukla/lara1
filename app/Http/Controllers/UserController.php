@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
+use Closure;
 
 class UserController extends Controller
 {
 
     public function showAll(){
         $user = DB::table("users")->get();
-        return view('welcome', ["user" =>$user]);
+        return view('welcome', ["user" =>$user]);            
     }
     public function paginate(){
         $user = DB::table("users")->paginate(3, ['id','name','email','password'], 'search')->appends(["sort"=>"votes"]);
@@ -40,9 +41,11 @@ class UserController extends Controller
         // return $user;
 
     }
-    public function validat(UserRequest $req){
+    public function validat(Request $req){
+
+        //object method
     //     return $req->validate([
-    //         'name'=>'required',
+    //         'name'=>['required', new UpperCase()],
     //         'email'=>'required|email', 
     //         'password'=>'required|numeric|min:20',
     //         'token'=>'required',
@@ -52,7 +55,26 @@ class UserController extends Controller
     //     ]
     // );
 
-    return  $req->all();
+
+//closure
+
+        return $req->validate([
+            'name'=>['required', function($attribute, $value, $fail){
+                if(strtoupper($value) != $value){
+                    $fail('We are use closure Method');
+                }
+
+            }],
+            'email'=>'required|email', 
+            'password'=>'required|numeric|min:20',
+            'token'=>'required',
+        ],[
+            'email.required'=>'Email Address is most important.',
+            'token.required'=>'Please fill Token'
+        ]
+    );
+
+    // return  $req->all();
             }
     public function insertData(){
         $id = DB::table("users")->insert([
